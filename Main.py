@@ -1,6 +1,6 @@
 # Import necessary libraries
 import pandas as pd
-import pdfplumber
+import pdfplumber as pdf_plum
 import re
 from collections import defaultdict
 import matplotlib.pyplot as plt
@@ -24,9 +24,9 @@ class LoadPDF:
     """
 
     @staticmethod
-    def extract_text_from_pdf(file_path):
+    def extract_text(file_path):
         """Extract all text from a given PDF file."""
-        with pdfplumber.open(file_path) as pdf:
+        with pdf_plum.open(file_path) as pdf:
             text = "".join(page.extract_text() for page in pdf.pages)
         return text
 
@@ -60,7 +60,7 @@ class LoadPDF:
     @staticmethod
     def get_state_with_caste():
         """Return a dictionary of states and their respective castes from the PDF."""
-        return LoadPDF.parse_states_and_castes(LoadPDF.extract_text_from_pdf(pdf_path))
+        return LoadPDF.parse_states_and_castes(LoadPDF.extract_text(pdf_path))
 
 
 # Load and validate the CSV data
